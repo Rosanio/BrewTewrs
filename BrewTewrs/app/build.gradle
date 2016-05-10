@@ -33,6 +33,7 @@ android {
     }
     buildTypes.each {
         it.buildConfigField 'String', 'BREW_DB_KEY', BrewDBApiKey
+        it.buildConfigField 'String', 'GEOCODING_API_KEY', GeocodingApiKey
         it.buildConfigField 'String', 'FIREBASE_ROOT_URL', FirebaseRootUrl
     }
 }

@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (authData != null) {
                     String userUid = authData.getUid();
                     mSharedPreferencesEditor.putString(Constants.KEY_UID, userUid).apply();
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                    Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     String userInfo = authData.toString();
                     Log.d(TAG, "Currently logged in: " + userInfo);
