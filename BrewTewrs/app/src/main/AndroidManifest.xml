@@ -11,9 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
-
-        </activity>
+        <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.SignUpActivity" />
         <activity android:name=".ui.SearchActivity">
             <intent-filter>
@@ -22,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.BarCrawlActivity" />
+        <activity android:name=".ui.CreateBarCrawlActivity"></activity>
     </application>
 
 </manifest>

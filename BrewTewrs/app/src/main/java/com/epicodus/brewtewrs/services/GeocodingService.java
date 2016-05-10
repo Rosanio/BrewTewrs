@@ -1,6 +1,7 @@
 package com.epicodus.brewtewrs.services;
 
 import com.epicodus.brewtewrs.Constants;
+import com.epicodus.brewtewrs.model.Location;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,8 +38,8 @@ public class GeocodingService {
         call.enqueue(callback);
     }
 
-    public ArrayList<String> processResults(Response response) {
-        ArrayList<String> latLng = new ArrayList<>();
+    public Location processResults(Response response) {
+        Location location = null;
 
         try {
             String jsonData = response.body().string();
@@ -50,15 +51,14 @@ public class GeocodingService {
                 JSONObject actualLocationJSON = geometryJSON.getJSONObject("location");
                 String lat = actualLocationJSON.getString("lat");
                 String lng = actualLocationJSON.getString("lng");
-                latLng.add(lat);
-                latLng.add(lng);
+                location = new Location(lat, lng);
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return latLng;
+        return location;
     }
 
 }
