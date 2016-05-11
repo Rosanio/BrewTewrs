@@ -3,10 +3,14 @@ package com.epicodus.brewtewrs.services;
 import android.util.Log;
 
 import com.epicodus.brewtewrs.Constants;
+import com.epicodus.brewtewrs.model.Brewery;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -40,15 +44,41 @@ public class BrewDBService {
         call.enqueue(callback);
     }
 
-    public void processResults(Response response) {
+    public ArrayList<Brewery> processResults(Response response) {
+        ArrayList<Brewery> breweries = new ArrayList<>();
         try {
-            String jsonData = response.body().string();
 
+            String jsonData = response.body().string();
+            JSONObject brewDBObject = new JSONObject(jsonData);
+            JSONArray brewDataJSON = brewDBObject.getJSONArray("data");
+            for (int i = 0; i < brewDataJSON.length(); i++) {
+                JSONObject locationJSON = brewDataJSON.getJSONObject(i);
+                JSONObject breweryJSON = locationJSON.getJSONObject("brewery");
+                String lat = locationJSON.getString("latitude");
+                String lng = locationJSON.getString("longitude");
+                String name = breweryJSON.getString("name");
+                String brewId = breweryJSON.getString("id");
+                String isOrganic = breweryJSON.getString("isOrganic");
+
+                Brewery brewery = new Brewery(name, brewId, isOrganic, lat, lng);
+
+                if(breweryJSON.has("description")) {
+                    String description = breweryJSON.getString("description");
+                    brewery.setDescription(description);
+                }
+
+                if(breweryJSON.has("website")) {
+                    String websiteUrl = breweryJSON.getString("website");
+                    brewery.setWebsiteUrl(websiteUrl);
+                }
+                breweries.add(brewery);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return breweries;
     }
 }

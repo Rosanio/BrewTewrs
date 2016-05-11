@@ -1,3 +1,8 @@
+/*
+    todo:
+     add reverse geocoding to lookup address based on latLng
+*/
+
 package com.epicodus.brewtewrs.ui;
 
 import android.content.Intent;
