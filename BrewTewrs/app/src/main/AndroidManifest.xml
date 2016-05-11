@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.BarCrawlActivity" />
-        <activity android:name=".ui.CreateBarCrawlActivity"></activity>
+        <activity android:name=".ui.CreateBarCrawlActivity" />
+        <activity android:name=".ui.BeerListActivity"></activity>
     </application>
 
 </manifest>

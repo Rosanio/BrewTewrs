@@ -9,9 +9,7 @@ import org.parceler.Parcel;
 public class Beer {
 
     private String name;
-    private String description;
     private String abv;
-    private String availability;
     private String beerId;
     private String isOrganic;
     private String style;
@@ -19,12 +17,8 @@ public class Beer {
 
     public Beer() {}
 
-    public Beer(String pushId, String name, String description, String abv, String availability, String beerId, String isOrganic, String style) {
-        this.pushId = pushId;
+    public Beer(String name, String beerId, String isOrganic, String style) {
         this.name = name;
-        this.description = description;
-        this.abv = abv;
-        this.availability = availability;
         this.beerId = beerId;
         this.isOrganic = isOrganic;
         this.style = style;
@@ -38,16 +32,8 @@ public class Beer {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public String getAbv() {
         return abv;
-    }
-
-    public String getAvailability() {
-        return availability;
     }
 
     public String getBeerId() {
@@ -60,5 +46,9 @@ public class Beer {
 
     public String getStyle() {
         return style;
+    }
+
+    public void setAbv(String abv) {
+        this.abv = abv;
     }
 }

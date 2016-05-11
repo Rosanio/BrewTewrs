@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Guest on 5/11/16.
  */
-public class BreweryListAdapter extends RecyclerView.Adapter<BreweryListAdapter.BreweryViewHolder> {
+public class BreweryListAdapter extends RecyclerView.Adapter<BreweryViewHolder> {
     private ArrayList<Brewery> mBreweries = new ArrayList<>();
     private Context mContext;
 
@@ -29,35 +29,19 @@ public class BreweryListAdapter extends RecyclerView.Adapter<BreweryListAdapter.
     }
 
     @Override
-    public BreweryListAdapter.BreweryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BreweryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.brewery_list_item, parent, false);
-        BreweryViewHolder viewHolder = new BreweryViewHolder(view);
+        BreweryViewHolder viewHolder = new BreweryViewHolder(view, mBreweries);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(BreweryListAdapter.BreweryViewHolder holder, int position) {
+    public void onBindViewHolder(BreweryViewHolder holder, int position) {
         holder.bindBrewery(mBreweries.get(position));
     }
 
     @Override
     public int getItemCount() {
         return mBreweries.size();
-    }
-
-    public class BreweryViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.textView) TextView mTextView;
-        private Context mContext;
-
-
-        public BreweryViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-            mContext = itemView.getContext();
-        }
-
-        public void bindBrewery(Brewery brewery) {
-            mTextView.setText(brewery.getName());
-        }
     }
 }
